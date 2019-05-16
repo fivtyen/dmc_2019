@@ -18,7 +18,7 @@ clf = joblib.load(model_file)
 # create result file
 result_file = '../data/predictions.csv'
 with open(result_file, 'w') as f:
-    f.write('0_confidence,1_confidence,predicted_class')
+    f.write('0_confidence,1_confidence,predicted_class\n')
 
 # make predictions
 prob = list(clf.predict_proba(df))
@@ -34,8 +34,7 @@ for p in prob:
 # save output
 with open(result_file, 'a') as f:
     for p in prob:
-        if p[-1] != p[-2]:
-            f.write('{},{},{}\n'.format(*p))
+        f.write('{},{},{}\n'.format(*p))
 
 # print runtime
 end = datetime.now()
